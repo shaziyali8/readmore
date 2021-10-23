@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .modal {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      word-wrap: break-word;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .cross {
+      position: relative;
+      width: 570px;
+    }
+
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      width: 30%;
+      height: auto;
+    }
+
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .text {
+      padding: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fa-times:before {
+      content: "\f00d";
+      position: absolute;
+      right: 188px;
+      top: 21px;
+      z-index: 10;
+      font-size: 23px;
+    }
+  </style>
+  <style>
+    .items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+
+    }
+
+    .Market_Place-item {
+      width: 280px;
+      border: 2px solid;
+      padding: 5px;
+    }
+
+    .Market_Place-item div {
+      margin: 5px 0;
+    }
+
+    .Market_Place-info {
+      display: flex;
+      justify-content: space-between;
+      color: aqua;
+    }
+
+    .Market_Place-info-contact {
+      color: red;
+    }
+
+    .Market_Place-details-msg {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      width: auto;
+      word-break: break-all;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="items">
+    <div class="Market_Place-item">
+      <div class="Market_Place-item-details">
+        <div style="color: aqua;display: flex; justify-content: space-between;"><span
+            class="Market_Place-item-header">Item Name</span><span class="Market_Place-details-offer"
+            style="color: red;">75 rupees</span></div>
+        <div class="Market_Place-details"><span class="Market_Place-details-msg">Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Eum nobis animi neque, illo ab officia, nihil expedita eaque esse non sequi quaerat enim
+            minima inventore consequuntur sit ut pariatur! Eveniet!</span></div>
+        <div class="Market_Place-info"><span class="Market_Place-info-date">Posted 12 days ago</span><span
+            class="Market_Place-info-contact">max well</span></div>
+      </div>
+    </div>
+    <div class="Market_Place-item">
+      <div class="Market_Place-item-details">
+        <div style="color: aqua;display: flex; justify-content: space-between;"><span
+            class="Market_Place-item-header">Item Name</span><span class="Market_Place-details-offer"
+            style="color: red;">75 rupees</span></div>
+        <div class="Market_Place-details"><span class="Market_Place-details-msg">Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Eum nobis animi neque, illo ab officia,</span></div>
+        <div class="Market_Place-info"><span class="Market_Place-info-date">Posted 12 days ago</span><span
+            class="Market_Place-info-contact">max well</span></div>
+      </div>
+    </div>
+    <div class="Market_Place-item">
+      <div class="Market_Place-item-details">
+        <div style="color: aqua;display: flex; justify-content: space-between;"><span
+            class="Market_Place-item-header">Item Name</span><span class="Market_Place-details-offer"
+            style="color: red;">75 rupees</span></div>
+        <div class="Market_Place-details"><span class="Market_Place-details-msg">Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Eum nobis animi neque, illo ab officia, nihil expedita eaque esse non sequi quaerat enim
+            minima inventore consequuntur sit ut pariatur! Eveniet!</span></div>
+        <div class="Market_Place-info"><span class="Market_Place-info-date">Posted 12 days ago</span><span
+            class="Market_Place-info-contact">max well</span></div>
+      </div>
+    </div>
+  </div>
+  <span id="text">
+    <div>maxx.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, consequuntur.</div>
+  </span>
+  <br>
+
+  <span id="text1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque animi voluptatum eligendi nemo
+    tempore. Molestiae a exercitationem officia incidunt neque aliquid, id minima obcaecati vero et adipisci sapiente
+    debitis eaque! Lorem ipsum dolor sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, rem.</span>
+  <br>
+
+  <span id="text2">1452Loeuaoeuorem ipsum, dolor sit amet consectetur adipisicing elit. Libero, consequuntur!</span>
+
+  <div id="myModal" class="modal">
+    <div class="cross">
+      <i class="fas fa-times"></i>
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let modal = document.querySelector(".modal");
+    let text = document.getElementById("text");
+    let text1 = document.getElementById("text1");
+    let fa = document.querySelector(".fa-times");
+    let modal_content = document.querySelector(".modal-content");
+
+    popup(text);
+    popup(text1);
+    popup(text2);
+
+    function popup(e) {
+      let textC = e.textContent;
+
+      let a = document.createElement("a");
+      a.textContent = "show";
+      a.style.color = "red";
+      a.style.cursor = 'pointer';
+
+      if (e.innerHTML.length > 40) {
+        e.innerHTML = add3Dots(textC, 10);
+        function add3Dots(string, limit) {
+          var dots = "...";
+          if (string.length > limit) {
+            string = string.substring(0, limit) + dots;
+          }
+          return string;
+        }
+        e.appendChild(a);
+      } else {
+        a.style.display = "none";
+      }
+
+      a.onclick = function () {
+        if (modal.style.display = "none") {
+          modal.style.display = "grid";
+        } else {
+          modal.style.display = "grid";
+        }
+        modal_content.textContent = textC;
+      }
+    }
+
+    fa.onclick = function () {
+      if (modal.style.display == "grid") {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>
